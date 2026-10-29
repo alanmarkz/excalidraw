@@ -1,0 +1,48 @@
+format: 1
+id: excalidraw-2
+version: 4
+name: Excalidraw
+tagline: Hand-drawn style whiteboard with live collaboration
+description: Sketch diagrams, wireframes and ideas on an endless whiteboard with a hand-drawn look. Drawings are saved in your browser, and you can start a live session to draw together with others.
+category: design
+replaces:
+- Miro
+license: MIT
+links:
+  source: https://github.com/alanmarkz/excalidraw
+  homepage: https://excalidraw.com
+  docs: https://docs.excalidraw.com
+icon:
+  letter: E
+  color: '#6965db'
+kind: web
+verified: false
+install:
+- method: docker
+  production:
+    compose: compose.yaml
+    resources:
+      disk_mb: 600
+      memory_mb: 300
+    sources:
+    - folder: excalidraw
+      repo: https://github.com/alanmarkz/excalidraw
+      ref: hearth/share-2026-10-29-130643
+    - folder: excalidraw-room
+      repo: https://github.com/alanmarkz/excalidraw-room
+      ref: hearth/share-2026-10-29-130643
+ports:
+  web:
+    container: 80
+    preferred: 3041
+settings: []
+data:
+- name: shared-drawings
+  volume: room_data
+  description: Drawings and pictures from live collaboration sessions, kept on this computer. They're encrypted by the browsers, so only people with the session link can see them.
+health:
+  port: web
+  path: /
+open:
+  port: web
+first_run: Just start drawing. Your work is saved in your browser automatically.
